@@ -1,0 +1,39 @@
+#!/usr/local/bin/awk -f
+
+##
+# awk-field-command: replace a specified field value with a system command
+#
+# Syntax:
+#
+#     awk-field-command
+#
+# Example:
+#
+#     awk -v field=x command='echo $RANDOM'
+#
+# Example input file `example.txt`:
+#
+#     a x
+#     b x
+#     c x
+#
+# Example run:
+#
+#     cat example.txt | awk -v field=x command='echo $RANDOM'
+#
+# Example output:
+#
+#     a 24638
+#     b 8709
+#     c 15801
+##
+
+{
+    for(i=1; i<=NF; i++){
+        if ($i==field){
+            command|getline $i
+            close(command)
+        }
+    }
+    print $0
+}
