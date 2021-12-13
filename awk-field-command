@@ -13,9 +13,9 @@
 #
 # Example input file `example.txt`:
 #
-#     a x
-#     b x
-#     c x
+#     foo x
+#     goo x
+#     hoo x
 #
 # Example run:
 #
@@ -23,9 +23,9 @@
 #
 # Example output:
 #
-#     a 24638
-#     b 8709
-#     c 15801
+#     foo 24638
+#     foo 8709
+#     foo 15801
 ##
 
 {
