@@ -1,0 +1,43 @@
+#!/usr/bin/awk -f
+
+##
+# awk-replace-field-value-with-command-output
+#
+# Use the command awk to replace a given field value
+# with given command's output.
+#
+# Syntax:
+#
+#     awk-replace-field-value-with-command-output
+#
+# Example:
+#
+#     awk-replace-field-value-with-command-output -v value=x command='echo $RANDOM'
+#
+# Example input file `example.txt`:
+#
+#     foo x
+#     goo x
+#     hoo x
+#
+# Example run:
+#
+#     cat example.txt | 
+#     awk-replace-field-value-with-command-output -v value=x command='echo $RANDOM'
+#
+# Example output:
+#
+#     foo 24638
+#     foo 8709
+#     foo 15801
+##
+
+{
+    for(i=1; i<=NF; i++){
+        if ($i==value){
+            command|getline $i
+            close(command)
+        }
+    }
+    print $0
+}
